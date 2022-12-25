@@ -1,16 +1,13 @@
-const router = require("express").Router();
+const router = require('express').Router();
+const { authenticateToken } = require('../middlewares/authMiddleware');
 
-
-router.use(mid1, mid2);
+// router.use(authenticateToken);
 
 // localhost:3000/api
-router.get("/", (req, res) => {
-    res.send("API Home page");
+router.get('/', (req, res) => {
+    res.send('API Home page');
 });
 
-router.route("/todos")
-    .get()
-    .post()
-    .put()
+router.route('/todos').get().post().put();
 
 module.exports = router;

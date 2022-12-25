@@ -13,6 +13,8 @@ router.get('/', (req, res) => {
     res.send('Auth home page');
 });
 
+router.post('/token', userService.grantToken);
+
 router.post('/login', userService.login);
 
 router.post('/logout', userService.logout);
