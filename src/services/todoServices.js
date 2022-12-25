@@ -64,8 +64,9 @@ const editTodo = async (req, res) => {
     try {
         const { id } = req.params;
         const todo = await Todo.findById(id);
-        if (!todo) return res.sendStatus(404);
-        if (!req.body.todoText) return res.sendStatus(400);
+        if (!todo) return res.status(404).json({ message: 'Invalid Id' });
+        if (!req.body.todoText)
+            return res.status(400).json({ message: 'Todo text is missing' });
 
         todo.todoText = req.body.todoText;
         await todo.save();
