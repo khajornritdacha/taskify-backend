@@ -16,7 +16,7 @@ const getTodo = async (req, res) => {
         });
     } catch (err) {
         console.log(err);
-        return res.sendStatus(500);
+        return res.status(500).send(err);
     }
 };
 
@@ -38,7 +38,7 @@ const addTodo = async (req, res) => {
         return res.sendStatus(201);
     } catch (err) {
         console.log(err);
-        return res.sendStatus(500);
+        return res.status(500).send(err);
     }
 };
 
@@ -56,7 +56,7 @@ const editTodoList = async (req, res) => {
         return res.sendStatus(200);
     } catch (err) {
         console.log(err);
-        return res.sendStatus(500);
+        return res.status(500).send(err);
     }
 };
 
@@ -74,7 +74,7 @@ const editTodo = async (req, res) => {
     } catch (err) {
         console.log(err);
         console.log('Error at editTodo');
-        return res.sendStatus(500);
+        return res.status(500).send(err);
     }
 };
 
@@ -86,7 +86,7 @@ const deleteTodo = async (req, res) => {
     } catch (err) {
         console.log(err);
         console.log('Error at delete Todo');
-        return res.sendStatus(500);
+        return res.status(500).send(err);
     }
 };
 
