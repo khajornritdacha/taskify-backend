@@ -9,6 +9,10 @@ require('./src/models/User');
 app.use('/api', require('./src/routes/apiRotes'));
 app.use('/auth', require('./src/routes/authRoutes'));
 
+app.get('/', (req, res) => {
+    res.send('Hello');
+});
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
