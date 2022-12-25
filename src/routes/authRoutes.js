@@ -3,7 +3,7 @@ const router = require('express').Router();
 const userService = require('../services/userServices');
 
 router.get('/', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.send('Auth home page');
 });
 
