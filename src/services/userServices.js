@@ -1,5 +1,4 @@
-// TODO: Send refresh token as httpOnly cookie
-// TODO: Extract refresh token from cookie instead
+// TODO: Reduce access token lifetime when
 
 require('dotenv').config();
 const bcrypt = require('bcrypt');
@@ -17,8 +16,8 @@ function generateAccessToken(user) {
 }
 
 const grantToken = (req, res) => {
-    // Send refresh token in header instead
-    const refreshToken = req.body.token;
+    const refreshToken =
+        req.cookies.refreshToken && req.cookies.refreshToken.split(' ')[1];
 
     if (refreshToken == null) return res.sendStatus(401);
     if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
@@ -55,14 +54,22 @@ const login = async (req, res) => {
     );
     refreshTokens.push(refreshToken);
 
-    return res.json({
-        accessToken,
-        refreshToken,
+    res.cookie('refreshToken', 'Bearer ' + refreshToken, {
+        httpOnly: true,
+        secure: true,
     });
+    res.cookie('accessToken', 'Bearer ' + accessToken, {
+        secure: true,
+    });
+
+    return res.sendStatus(200);
 };
 
 const logout = (req, res) => {
-    refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
+    const refreshToken =
+        req.cookies.refreshToken && req.cookies.refreshToken.split(' ')[1];
+    if (refreshToken == null) return res.sendStatus(401);
+    refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
     return res.sendStatus(204);
 };
 
