@@ -7,9 +7,19 @@
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+/**
+ * @swagger
  * /auth/login:
  *   post:
- *     summary: Login User
+ *     summary: Login User and send refreshToken as HttpOnly cookie and accessToken in body
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -51,16 +61,6 @@
  *     responses:
  *       201:
  *         description: Register success
- */
-
-/**
- * @swagger
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
  */
 
 /**
