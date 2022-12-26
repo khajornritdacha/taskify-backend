@@ -46,7 +46,7 @@ const editTodoList = async (req, res) => {
     try {
         const user = req.user;
 
-        const { todos, toRemoves } = req.body.data;
+        const { todos, toRemoves } = req.body;
 
         if (todos) user.todos = todos;
         if (toRemoves) user.toRemoves = toRemoves;
