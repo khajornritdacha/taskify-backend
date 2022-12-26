@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -20,5 +21,8 @@ const corsOptions = {
     credentials: true,
 };
 app.use(cors(corsOptions));
+
+// Use cookie parser middleware
+app.use(cookieParser());
 
 module.exports = app;
