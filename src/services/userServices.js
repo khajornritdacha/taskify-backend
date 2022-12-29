@@ -57,12 +57,10 @@ const login = async (req, res) => {
     res.cookie('refreshToken', 'Bearer ' + refreshToken, {
         httpOnly: true,
         secure: true,
-    });
-    res.cookie('accessToken', 'Bearer ' + accessToken, {
-        secure: true,
+        sameSite: 'strict',
     });
 
-    return res.sendStatus(200);
+    return res.status(200).json({ accessToken });
 };
 
 const logout = (req, res) => {
