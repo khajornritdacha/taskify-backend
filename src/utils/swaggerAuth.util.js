@@ -37,6 +37,14 @@
  *     responses:
  *       200:
  *         description: Login success
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: object
+ *             properties:
+ *               accessToken:
+ *                 type: string
+ *                 default: your access token
  */
 
 /**
