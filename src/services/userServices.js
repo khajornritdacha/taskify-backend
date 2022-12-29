@@ -57,7 +57,6 @@ const login = async (req, res) => {
     res.cookie('refreshToken', 'Bearer ' + refreshToken, {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
     });
 
     return res.status(200).json({ accessToken });
