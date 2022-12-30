@@ -56,8 +56,8 @@ const login = async (req, res) => {
 
     res.cookie('refreshToken', 'Bearer ' + refreshToken, {
         httpOnly: true,
-
-        // secure: true,
+        sameSite: 'none',
+        secure: true,
     });
 
     // console.log(res.cookies);
