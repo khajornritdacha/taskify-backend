@@ -19,17 +19,22 @@ const grantToken = (req, res) => {
     const refreshToken =
         req.cookies.refreshToken && req.cookies.refreshToken.split(' ')[1];
 
-    if (refreshToken == null) return res.sendStatus(401);
+    console.log('GrantToken: ', refreshToken);
+
+    if (!refreshToken) return res.sendStatus(401);
     if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);
-        const accessToken = generateAccessToken({ name: user.email });
-        return res.json({ accessToken: accessToken });
+        const accessToken = generateAccessToken({ email: user.email });
+        return res.json({ accessToken });
     });
 };
 
 const login = async (req, res) => {
     const { email, password } = req.body;
+
+    console.log('Login: ', email, password);
+
     if (!email || !password) {
         return res
             .status(400)

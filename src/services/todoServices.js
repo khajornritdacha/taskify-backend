@@ -26,6 +26,8 @@ const addTodo = async (req, res) => {
 
         const { todoText, isDone } = req.body;
 
+        console.log('Add Todo: ', todoText, isDone);
+
         if (!todoText || typeof isDone !== 'boolean')
             return res.status(400).json({ message: 'data is missing' });
 
