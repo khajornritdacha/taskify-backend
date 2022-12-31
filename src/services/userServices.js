@@ -63,6 +63,7 @@ const login = async (req, res) => {
         httpOnly: true,
         sameSite: 'none',
         secure: true,
+        maxAge: 24 * 60 * 60 * 7000,
     });
 
     // console.log(res.cookies);
