@@ -18,6 +18,7 @@ const corsOptions = {
         'http://localhost:5173',
         'http://127.0.0.1:5173',
         'https://taskify-v2.vercel.app',
+        'https://taskify-v2.netlify.app',
     ],
     credentials: true,
 };
